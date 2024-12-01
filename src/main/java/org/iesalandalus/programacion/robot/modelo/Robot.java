@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.robot.modelo;
 
 import java.util.Objects;
 
-public class Robot {
+public class Robot implements Cloneable {
     private Zona zona;
     private Orientacion orientacion;
     private Coordenada coordenada;
@@ -132,6 +132,11 @@ public class Robot {
             case ESTE -> orientacion = Orientacion.NORESTE;
             case NORESTE -> orientacion = Orientacion.NORTE;
         }
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new Robot(new Zona(this.zona.ancho(), this.zona.alto()), this.orientacion, new Coordenada(this.coordenada.x(), this.coordenada.y()));
     }
 
     @Override
