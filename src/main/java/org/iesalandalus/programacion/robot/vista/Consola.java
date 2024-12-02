@@ -14,7 +14,8 @@ public class Consola {
         System.out.println("Opción 2: Indicando su zona");
         System.out.println("Opción 3: Indicando su zona y orientación");
         System.out.println("Opción 4: orientación y Indicando su zona, orientación y coordenada incial");
-        System.out.println("Opción 5: Ejecutar comando y salir");
+        System.out.println("Opción 5: Ejecutar comando");
+        System.out.println("Opcion 6: Salir");
     }
 
     public static int elegirOpcion() {
@@ -22,7 +23,7 @@ public class Consola {
         int option = 0;
 
         mostrarMenuPrincipal();
-        while (option <= 0 || option > 5) {
+        while (option <= 0 || option > 6) {
             System.out.println("Elegir una de las opciones");
             option = scanner.nextInt();
         }
@@ -107,7 +108,7 @@ public class Consola {
         System.out.println("D: Girar a la derecha");
         System.out.println("I: Girar a la izquierda");
         char comandoSeleccionado = 'E';
-        while (comandoSeleccionado != 'A' && comandoSeleccionado != 'D' && comandoSeleccionado != 'I') {
+        while (Character.toUpperCase(comandoSeleccionado) != 'A' &&  Character.toUpperCase(comandoSeleccionado)!= 'D' &&  Character.toUpperCase(comandoSeleccionado)!= 'I') {
             System.out.println("Ingrese el comando");
             String input = scanner.nextLine();
             if (input.length() == 1) {
