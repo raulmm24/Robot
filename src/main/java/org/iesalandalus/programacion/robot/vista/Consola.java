@@ -106,27 +106,28 @@ public class Consola {
         System.out.println("A: Avanzar");
         System.out.println("D: Girar a la derecha");
         System.out.println("I: Girar a la izquierda");
-        System.out.println("Ingrese el comando");
-
-        String input = scanner.nextLine();
-        if (input.length() == 1) {
-            return input.charAt(0);
-        } else {
-            System.out.println("Entrada invalida. Por favor ingrese un solo carácter");
+        char comandoSeleccionado = 'E';
+        while (comandoSeleccionado != 'A' && comandoSeleccionado != 'D' && comandoSeleccionado != 'I') {
+            System.out.println("Ingrese el comando");
+            String input = scanner.nextLine();
+            if (input.length() == 1) {
+                comandoSeleccionado = input.charAt(0);
+            } else {
+                System.out.println("Entrada invalida. Por favor ingrese un solo carácter");
+            }
         }
-        return comando();
+        return comandoSeleccionado;
     }
 
-    public static void mostrarRobot (ControladorRobot controladorRobot){
+    public static void mostrarRobot (ControladorRobot controladorRobot) {
         if (controladorRobot == null) {
             System.out.println("El controlador es nulo.");
         } else if (controladorRobot.getRobot() == null) {
             System.out.println("El robot dentro del controlador es nulo.");
         } else {
-            System.out.println("Parametros del robot" + controladorRobot.getRobot());
-            }
+            System.out.println("Parametros del robot" + controladorRobot.getRobot().toString());
         }
-
+    }
         public static void despedirse() {
             System.out.println("Hasta Luego!!");
         }
