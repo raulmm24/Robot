@@ -3,8 +3,6 @@ package org.iesalandalus.programacion.robot;
 import org.iesalandalus.programacion.robot.modelo.*;
 import org.iesalandalus.programacion.robot.vista.Consola;
 
-
-
 public class Main {
     public static void main (String [] args) {
         int options = 0;
