@@ -6,7 +6,7 @@ public class ControladorRobot {
     public ControladorRobot(Robot robot){
         if (robot != null) {
             try {
-                this.robot =(Robot) robot.clone();
+                this.robot =(Robot) robot;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -15,11 +15,7 @@ public class ControladorRobot {
         }
     }
     public Robot getRobot() {
-        try {
-            return (Robot) robot.clone();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        return new Robot(robot);
     }
     public void ejecutar(char comando) {
         switch (comando) {

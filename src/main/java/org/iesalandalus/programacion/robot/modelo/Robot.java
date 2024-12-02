@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.robot.modelo;
 
 import java.util.Objects;
 
-public class Robot implements Cloneable {
+public class Robot {
     private Zona zona;
     private Orientacion orientacion;
     private Coordenada coordenada;
@@ -135,11 +135,6 @@ public class Robot implements Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return new Robot(new Zona(this.zona.ancho(), this.zona.alto()), this.orientacion, new Coordenada(this.coordenada.x(), this.coordenada.y()));
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o instanceof Robot ) {
             Robot robot = (Robot) o;
@@ -147,8 +142,6 @@ public class Robot implements Cloneable {
         } else {
             return false;
         }
-
-
     }
 
     @Override
