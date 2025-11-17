@@ -133,16 +133,16 @@ public class Robot {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Robot robot)) return false;
-        return Objects.equals(coordenada, robot.coordenada) && orientacion == robot.orientacion && Objects.equals(zona, robot.zona);
+        return Objects.equals(zona, robot.zona) && orientacion == robot.orientacion && Objects.equals(coordenada, robot.coordenada);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coordenada, orientacion, zona);
+        return Objects.hash(zona, orientacion, coordenada);
     }
 
     @Override
     public String toString() {
-        return String.format("Robot[coordenada=%s, orientacion=%s, zona=%s]", this.coordenada, this.orientacion, this.zona);
+        return String.format("Robot[zona=%s, orientacion=%s, coordenada=%s]", this.zona, this.orientacion, this.coordenada);
     }
 }
