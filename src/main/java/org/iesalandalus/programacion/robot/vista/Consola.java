@@ -116,7 +116,7 @@ public class Consola {
     }
 
     public static char elegirComando() {
-        char comando = ' ';
+        char comando;
 
         System.out.println("Introduce el comando a ejecutar:");
         comando = Entrada.caracter();

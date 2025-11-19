@@ -19,11 +19,11 @@ public class ControladorRobot {
 
         switch (Character.toUpperCase(comando)) {
 
-            case 'a' -> robot.avanzar();
+            case 'A' -> robot.avanzar();
 
-            case 'd' -> robot.girarALaDerecha();
+            case 'D' -> robot.girarALaDerecha();
 
-            case 'i' -> robot.girarALaIzquierda();
+            case 'I' -> robot.girarALaIzquierda();
 
             default -> throw new RobotExcepcion("Comando desconocido.");
         }
