@@ -33,14 +33,14 @@ public class Main {
     private static void controlarRobotDefecto() {
         Robot robot = new Robot();
         controladorRobot = new ControladorRobot(robot);
-        System.out.println("Robot creado por defecto.");
+        System.out.println("Robot creado por defecto." + robot);
     }
 
     private static void controlarRobotZona() {
         Zona zona = Consola.elegirZona();
         Robot robot = new Robot(zona);
         controladorRobot = new ControladorRobot(robot);
-        System.out.println("Robot creado indicando su zona");
+        System.out.println("Robot creado indicando su zona" + robot);
     }
 
     private static void controlarRobotOrientacion() {
@@ -48,7 +48,7 @@ public class Main {
         Orientacion orientacion = Consola.elegirOrientacion();
         Robot robot = new Robot(zona, orientacion);
         controladorRobot = new ControladorRobot(robot);
-        System.out.println("Robot creado indicando su zona y orientación");
+        System.out.println("Robot creado indicando su zona y orientación" + robot);
     }
 
     private static void controlarRobotOrientacionCoordenada() {
@@ -57,7 +57,7 @@ public class Main {
         Coordenada coordenada = Consola.elegirCoordenada();
         Robot robot = new Robot(zona, orientacion, coordenada);
         controladorRobot = new ControladorRobot(robot);
-        System.out.println("Robot creado indicando su zona, orientación y coordenada");
+        System.out.println("Robot creado indicando su zona, orientación y coordenada" + robot);
     }
 
     private static void ejecutarComando() {
