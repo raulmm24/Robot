@@ -84,14 +84,14 @@ public class Robot {
         int y = coordenada.y();
 
         Coordenada nueva = switch (orientacion) {
-            case NORTE -> new Coordenada(x, + 1);
-            case SUR   -> new Coordenada(x, - 1);
+            case NORTE -> new Coordenada(x, y + 1);
+            case SUR   -> new Coordenada(x, y - 1);
             case ESTE  -> new Coordenada( + 1, y);
             case OESTE -> new Coordenada( - 1, y);
-            case NORESTE -> new Coordenada( + 1,  + 1);
-            case NOROESTE -> new Coordenada( - 1,  + 1);
-            case SURESTE  -> new Coordenada( + 1,  - 1);
-            case SUROESTE -> new Coordenada( - 1,  - 1);
+            case NORESTE -> new Coordenada( + 1,y + 1);
+            case NOROESTE -> new Coordenada( - 1,y + 1);
+            case SURESTE  -> new Coordenada( + 1,y - 1);
+            case SUROESTE -> new Coordenada( - 1,y - 1);
         };
 
         if (!zona.pertenece(nueva))

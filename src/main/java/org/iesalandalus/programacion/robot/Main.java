@@ -72,5 +72,6 @@ public class Main {
         } catch (RobotExcepcion e) {
             System.out.println("Error al ejecutar el comando" + e.getMessage());
         }
+        Consola.mostrarRobot(controladorRobot);
         }
-    }
+}

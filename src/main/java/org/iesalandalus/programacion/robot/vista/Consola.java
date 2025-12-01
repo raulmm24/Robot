@@ -28,7 +28,7 @@ public class Consola {
         do {
             System.out.println("Elija una opción (1-6)");
             opcion = Entrada.entero();
-        } while (opcion < 0 || opcion > 6);
+        } while (opcion < 1 || opcion > 6);
 
         return opcion;
     }

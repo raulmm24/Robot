@@ -11,13 +11,11 @@ public class ControladorRobot {
     }
 
     public Robot getRobot() {
-        return new Robot();
+        return new Robot(robot);
     }
 
     public void ejecutar(char comando) throws RobotExcepcion {
-
         switch (comando) {
-
             case 'A', 'a' -> robot.avanzar();
             case 'D', 'd' -> robot.girarALaDerecha();
             case 'I', 'i' -> robot.girarALaIzquierda();
