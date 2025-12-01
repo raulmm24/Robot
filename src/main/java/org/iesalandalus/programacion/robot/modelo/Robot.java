@@ -79,20 +79,19 @@ public class Robot {
         this.coordenada = new Coordenada(coordenada.x(), coordenada.y());
     }
 
-    /* DUDA IMPORTANTE */
     public void avanzar() {
         int x = coordenada.x();
         int y = coordenada.y();
 
         Coordenada nueva = switch (orientacion) {
-            case NORTE -> new Coordenada(x,y + 1);
-            case SUR   -> new Coordenada(x,y - 1);
-            case ESTE  -> new Coordenada(x + 1, y);
-            case OESTE -> new Coordenada(x - 1, y);
-            case NORESTE -> new Coordenada(x + 1, y + 1);
-            case NOROESTE -> new Coordenada(x - 1, y + 1);
-            case SURESTE  -> new Coordenada(x + 1, y - 1);
-            case SUROESTE -> new Coordenada(x - 1, y - 1);
+            case NORTE -> new Coordenada(x, + 1);
+            case SUR   -> new Coordenada(x, - 1);
+            case ESTE  -> new Coordenada( + 1, y);
+            case OESTE -> new Coordenada( - 1, y);
+            case NORESTE -> new Coordenada( + 1,  + 1);
+            case NOROESTE -> new Coordenada( - 1,  + 1);
+            case SURESTE  -> new Coordenada( + 1,  - 1);
+            case SUROESTE -> new Coordenada( - 1,  - 1);
         };
 
         if (!zona.pertenece(nueva))
@@ -101,7 +100,6 @@ public class Robot {
         this.coordenada = nueva;
     }
 
-    /* DUDA IMPORTANTE */
     public void girarALaDerecha() {
         orientacion = switch (orientacion) {
             case NORTE -> Orientacion.NORESTE;
@@ -115,7 +113,6 @@ public class Robot {
         };
     }
 
-    /* DUDA IMPORTANTE */
     public void girarALaIzquierda() {
         orientacion = switch (orientacion) {
             case NORTE -> Orientacion.NOROESTE;
@@ -138,11 +135,11 @@ public class Robot {
 
     @Override
     public int hashCode() {
-        return Objects.hash(zona, orientacion, coordenada);
+        return Objects.hash(zona, coordenada, orientacion);
     }
 
     @Override
     public String toString() {
-        return String.format("Robot[zona=%s, orientacion=%s, coordenada=%s]", this.zona, this.orientacion, this.coordenada);
+        return String.format("Robot[zona=%s, coordenada=%s, orientación=%s]", this.zona, this.coordenada, this.orientacion);
     }
 }

@@ -59,7 +59,7 @@ public class Main {
         controladorRobot = new ControladorRobot(robot);
         System.out.println("Robot creado indicando su zona, orientación y coordenada" + robot);
     }
-
+    
     private static void ejecutarComando() {
         if (controladorRobot == null) {
             System.out.println("No hay ningun robot controlado actualmente. Crea uno primero.");

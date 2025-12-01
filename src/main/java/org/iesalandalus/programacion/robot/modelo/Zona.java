@@ -43,10 +43,10 @@ public record Zona(int ancho, int alto) {
     }
 
     private boolean perteneceX(int x) {
-        return x >= 0 && x < ancho;
+        return (x >= 0) && (x < ancho);
     }
 
     private boolean perteneceY(int y) {
-        return y >= 0 && y < alto;
+        return (y >= 0) && (y < alto);
     }
 }

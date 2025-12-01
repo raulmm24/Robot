@@ -1,30 +1,26 @@
 package org.iesalandalus.programacion.robot.modelo;
 
+import java.util.Objects;
+
 public class ControladorRobot {
 
     private Robot robot;
 
     public ControladorRobot(Robot robot) {
-        if (robot == null) {
-            throw new NullPointerException("El robot no puede ser nulo.");
-        }
-        this.robot = new Robot();
+       this.robot = new Robot(Objects.requireNonNull(robot,"El robot no puede ser nulo."));
     }
 
     public Robot getRobot() {
         return new Robot();
     }
 
-    public void ejecutar(char comando) {
+    public void ejecutar(char comando) throws RobotExcepcion {
 
-        switch (Character.toUpperCase(comando)) {
+        switch (comando) {
 
-            case 'A' -> robot.avanzar();
-
-            case 'D' -> robot.girarALaDerecha();
-
-            case 'I' -> robot.girarALaIzquierda();
-
+            case 'A', 'a' -> robot.avanzar();
+            case 'D', 'd' -> robot.girarALaDerecha();
+            case 'I', 'i' -> robot.girarALaIzquierda();
             default -> throw new RobotExcepcion("Comando desconocido.");
         }
     }

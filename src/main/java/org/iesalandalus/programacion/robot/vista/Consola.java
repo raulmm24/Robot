@@ -12,6 +12,7 @@ public class Consola {
 
     public static void mostrarMenuPrincipal() {
         System.out.println(" Menu Principal ");
+        System.out.println("-------------------------------------");
         System.out.println("1. - Controlar un robot por defecto.");
         System.out.println("2. - Controlar un robot indicando su zona.");
         System.out.println("3. - Controlar un robot indicando su zona y orientación.");
@@ -56,6 +57,7 @@ public class Consola {
 
     public static void mostrarMenuOrientacion() {
         System.out.println(" Menu de Orientación ");
+        System.out.println("----------------------");
         System.out.println("1. - Norte");
         System.out.println("2. - Noreste");
         System.out.println("3. - Este");
@@ -109,26 +111,22 @@ public class Consola {
             } catch (IllegalArgumentException e) {
                 System.out.println("Coordenada invalida" + e.getMessage() + " , Vuelve a intentarlo.");
             }
-
         } while (coordenada == null);
 
         return coordenada;
     }
 
     public static char elegirComando() {
-        char comando;
 
         System.out.println("Introduce el comando a ejecutar:");
-        comando = Entrada.caracter();
-
-        return comando;
+        return Entrada.caracter();
     }
 
     public static void mostrarRobot(ControladorRobot controladorRobot) {
         if (controladorRobot == null) {
             throw new IllegalArgumentException("No existe ningún robot para mostrar.");
         } else {
-            System.out.println(controladorRobot);
+            System.out.println(controladorRobot.getRobot());
         }
     }
 
