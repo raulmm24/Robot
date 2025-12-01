@@ -35,16 +35,14 @@ public class Consola {
 
     public static Zona elegirZona() {
         Zona zona = null;
-        int ancho;
-        int alto;
         
         do {
             try {
                 System.out.println("Introduce el ancho de la zona:");
-                ancho = Entrada.entero();
+                int ancho = Entrada.entero();
 
                 System.out.println("Introduce el alto de la zona:");
-                alto = Entrada.entero();
+                int alto = Entrada.entero();
 
                 zona = new Zona(ancho, alto);
             } catch (IllegalArgumentException e) {
@@ -94,17 +92,15 @@ public class Consola {
     }
 
     public static Coordenada elegirCoordenada() {
-        int x;
-        int y;
         Coordenada coordenada = null;
 
         do {
             try {
                 System.out.println("Introduce la coordenada X:");
-                x = Entrada.entero();
+                int x = Entrada.entero();
 
                 System.out.println("Introduce la coordenada Y:");
-                y = Entrada.entero();
+                int y = Entrada.entero();
 
                 coordenada = new Coordenada(x, y);
 
