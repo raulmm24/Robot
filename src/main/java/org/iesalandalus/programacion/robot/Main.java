@@ -65,12 +65,11 @@ public class Main {
             System.out.println("No hay ningun robot controlado actualmente. Crea uno primero.");
             return;
         }
-        char comando = Consola.elegirComando();
 
         try {
-            controladorRobot.ejecutar(comando);
+            controladorRobot.ejecutar(Consola.elegirComando());
             System.out.println("Comando ejecutado correctamente.");
-        } catch (IllegalArgumentException e) {
+        } catch (RobotExcepcion e) {
             System.out.println("Error al ejecutar el comando" + e.getMessage());
         }
         }
