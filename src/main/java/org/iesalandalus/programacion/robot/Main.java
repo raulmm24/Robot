@@ -10,68 +10,63 @@ public class Main {
 
     public static void main(String[] args) {
         int opcion;
-
         do {
+            Consola.mostrarMenuPrincipal();
             opcion = Consola.elegirOpcion();
-            ejecutarOpcion(opcion);
-        } while (opcion != 6);
-
+            if (opcion != 0) {
+                ejecutarOpcion(opcion);
+                Consola.mostrarRobot(controladorRobot);
+            }
+        } while (opcion != 0);
+        Consola.despedirse();
     }
 
     private static void ejecutarOpcion(int opcion) {
         switch (opcion) {
             case 1 -> controlarRobotDefecto();
             case 2 -> controlarRobotZona();
-            case 3 -> controlarRobotOrientacion();
-            case 4 -> controlarRobotOrientacionCoordenada();
+            case 3 -> controlarRobotZonaOrientacion();
+            case 4 -> controlarRobotZonaOrientacionCoordenada();
             case 5 -> ejecutarComando();
-            case 6 -> Consola.despedirse();
-            default -> System.out.println("Opción no valida.");
+            default -> { /*No hacer nada*/ }
         }
     }
 
     private static void controlarRobotDefecto() {
-        Robot robot = new Robot();
-        controladorRobot = new ControladorRobot(robot);
-        System.out.println("Robot creado por defecto." + robot);
+        controladorRobot = new ControladorRobot(new Robot());
     }
 
     private static void controlarRobotZona() {
-        Zona zona = Consola.elegirZona();
-        Robot robot = new Robot(zona);
-        controladorRobot = new ControladorRobot(robot);
-        System.out.println("Robot creado indicando su zona" + robot);
+        controladorRobot = new ControladorRobot(new Robot(Consola.elegirZona()));
     }
 
-    private static void controlarRobotOrientacion() {
+    private static void controlarRobotZonaOrientacion() {
         Zona zona = Consola.elegirZona();
+        Consola.mostrarMenuOrientacion();
         Orientacion orientacion = Consola.elegirOrientacion();
-        Robot robot = new Robot(zona, orientacion);
-        controladorRobot = new ControladorRobot(robot);
-        System.out.println("Robot creado indicando su zona y orientación" + robot);
+        controladorRobot = new ControladorRobot(new Robot(zona, orientacion));
     }
 
-    private static void controlarRobotOrientacionCoordenada() {
+    private static void controlarRobotZonaOrientacionCoordenada() {
         Zona zona = Consola.elegirZona();
+        Consola.mostrarMenuOrientacion();
         Orientacion orientacion = Consola.elegirOrientacion();
         Coordenada coordenada = Consola.elegirCoordenada();
-        Robot robot = new Robot(zona, orientacion, coordenada);
-        controladorRobot = new ControladorRobot(robot);
-        System.out.println("Robot creado indicando su zona, orientación y coordenada" + robot);
-    }
-    
-    private static void ejecutarComando() {
-        if (controladorRobot == null) {
-            System.out.println("No hay ningun robot controlado actualmente. Crea uno primero.");
-            return;
-        }
-
         try {
-            controladorRobot.ejecutar(Consola.elegirComando());
-            System.out.println("Comando ejecutado correctamente.");
-        } catch (RobotExcepcion e) {
-            System.out.println("Error al ejecutar el comando" + e.getMessage());
+            controladorRobot = new ControladorRobot(new Robot(zona, orientacion, coordenada));
+        } catch (IllegalArgumentException iae) {
+            System.out.println("ERROR: " + iae.getMessage());
         }
-        Consola.mostrarRobot(controladorRobot);
+    }
+
+    private static void ejecutarComando() {
+        if (controladorRobot != null) {
+            try {
+                controladorRobot.ejecutar(Consola.elegirComando());
+            } catch (RobotExcepcion re) {
+                System.out.println("ERROR: " + re.getMessage());
+            }
         }
+    }
+
 }

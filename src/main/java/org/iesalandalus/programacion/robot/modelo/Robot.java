@@ -9,21 +9,21 @@ public class Robot {
     private Coordenada coordenada;
 
     public Robot() {
-        this.zona = new Zona(Zona.ANCHO_MINIMO, Zona.ALTO_MINIMO);
-        this.orientacion = Orientacion.NORTE;
-        this.coordenada = zona.getCentro();
+        zona = new Zona();
+        coordenada = zona.getCentro();
+        orientacion = Orientacion.NORTE;
     }
 
     public Robot(Zona zona) {
         setZona(zona);
-        this.orientacion = Orientacion.NORTE;
-        this.coordenada = zona.getCentro();
+        setOrientacion(Orientacion.NORTE);
+        setCoordenada(zona.getCentro());
     }
 
     public Robot(Zona zona, Orientacion orientacion) {
         setZona(zona);
         setOrientacion(orientacion);
-        this.coordenada = zona.getCentro();
+        setCoordenada(zona.getCentro());
     }
 
     public Robot(Zona zona, Orientacion orientacion, Coordenada coordenada) {
@@ -33,13 +33,10 @@ public class Robot {
     }
 
     public Robot(Robot robot) {
-        if (robot == null) {
-            throw new NullPointerException("El robot no puede ser nulo.");
-        }
-
-        this.zona = new Zona(robot.zona.ancho(), robot.zona.alto());
-        this.orientacion = robot.orientacion;
-        this.coordenada = new Coordenada(robot.coordenada.x(), robot.coordenada.y());
+        Objects.requireNonNull(robot, "El robot no puede ser nulo.");
+        zona = robot.getZona();
+        coordenada = robot.getCoordenada();
+        orientacion = robot.getOrientacion();
     }
 
     public Zona getZona() {
@@ -47,10 +44,7 @@ public class Robot {
     }
 
     private void setZona(Zona zona) {
-        if (zona == null) {
-            throw new NullPointerException("La zona no puede ser nula.");
-        }
-        this.zona = zona;
+        this.zona = Objects.requireNonNull(zona, "La zona no puede ser nula.");
     }
 
     public Orientacion getOrientacion() {
@@ -58,10 +52,7 @@ public class Robot {
     }
 
     private void setOrientacion(Orientacion orientacion) {
-        if (orientacion == null) {
-            throw new NullPointerException("La orientación no puede ser nula.");
-        }
-        this.orientacion = orientacion;
+        this.orientacion = Objects.requireNonNull(orientacion, "La orientación no puede ser nula.");
     }
 
     public Coordenada getCoordenada() {
@@ -69,35 +60,31 @@ public class Robot {
     }
 
     private void setCoordenada(Coordenada coordenada) {
-        if (coordenada == null) {
-            throw new NullPointerException("La coordenada no puede ser nula.");
-        }
-
+        Objects.requireNonNull(coordenada, "La coordenada no puede ser nula.");
         if (!zona.pertenece(coordenada)) {
             throw new IllegalArgumentException("La coordenada no pertenece a la zona.");
         }
-        this.coordenada = new Coordenada(coordenada.x(), coordenada.y());
+        this.coordenada = coordenada;
     }
 
     public void avanzar() {
-        int x = coordenada.x();
-        int y = coordenada.y();
-
-        Coordenada nueva = switch (orientacion) {
-            case NORTE -> new Coordenada(x, y + 1);
-            case SUR   -> new Coordenada(x, y - 1);
-            case ESTE  -> new Coordenada( + 1, y);
-            case OESTE -> new Coordenada( - 1, y);
-            case NORESTE -> new Coordenada( + 1,y + 1);
-            case NOROESTE -> new Coordenada( - 1,y + 1);
-            case SURESTE  -> new Coordenada( + 1,y - 1);
-            case SUROESTE -> new Coordenada( - 1,y - 1);
-        };
-
-        if (!zona.pertenece(nueva))
+        int nuevaCoordenadaX = coordenada.x();
+        int nuevaCoordenadaY = coordenada.y();
+        switch (orientacion) {
+            case NORTE -> nuevaCoordenadaY++;
+            case NORESTE -> { nuevaCoordenadaX++; nuevaCoordenadaY++; }
+            case ESTE -> nuevaCoordenadaX++;
+            case SURESTE -> { nuevaCoordenadaX++; nuevaCoordenadaY--; }
+            case SUR -> nuevaCoordenadaY--;
+            case SUROESTE -> { nuevaCoordenadaX--; nuevaCoordenadaY--; }
+            case OESTE -> nuevaCoordenadaX--;
+            case NOROESTE -> { nuevaCoordenadaX--; nuevaCoordenadaY++; }
+        }
+        try {
+            setCoordenada(new Coordenada(nuevaCoordenadaX, nuevaCoordenadaY));
+        } catch (IllegalArgumentException iae) {
             throw new RobotExcepcion("No se puede avanzar, ya que se sale de la zona.");
-
-        this.coordenada = nueva;
+        }
     }
 
     public void girarALaDerecha() {
